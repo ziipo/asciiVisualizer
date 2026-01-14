@@ -9,7 +9,9 @@
 <body>
   <canvas id="canvas"></canvas>
 
-  <div class="controls-container">
+  <div class="collapse-toggle" id="collapse-toggle">−</div>
+
+  <div class="controls-container" id="controls-container">
     <header>
       <h1>Audio-Reactive ASCII Clouds</h1>
       <p class="subtitle">WebGL visualization driven by sound</p>
@@ -45,8 +47,10 @@
 
         <div class="param-control" style="margin-top: 12px;">
           <label for="maxVolume">Max Volume Scale</label>
-          <input type="range" id="maxVolume" min="0.2" max="3.0" step="0.1" value="1.2">
-          <span id="maxVolume-value">1.2</span>
+          <div class="slider-row">
+            <input type="range" id="maxVolume" min="0.2" max="3.0" step="0.1" value="1.2">
+            <span id="maxVolume-value">1.2</span>
+          </div>
         </div>
       </div>
     </section>
@@ -57,13 +61,17 @@
       <div class="param-group">
         <div class="param-control">
           <label for="cellSize">Cell Size</label>
-          <input type="range" id="cellSize" min="8" max="32" step="1" value="18">
-          <span id="cellSize-value">18</span>
+          <div class="slider-row">
+            <input type="range" id="cellSize" min="8" max="32" step="1" value="18">
+            <span id="cellSize-value">18</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="noiseIntensity">Noise Intensity</label>
-          <input type="range" id="noiseIntensity" min="0" max="0.5" step="0.01" value="0.125">
-          <span id="noiseIntensity-value">0.125</span>
+          <div class="slider-row">
+            <input type="range" id="noiseIntensity" min="0" max="0.5" step="0.01" value="0.125">
+            <span id="noiseIntensity-value">0.125</span>
+          </div>
         </div>
       </div>
     </section>
@@ -73,18 +81,24 @@
       <div class="param-group">
         <div class="param-control">
           <label for="waveSpeed">Speed Sensitivity</label>
-          <input type="range" id="waveSpeed" min="0" max="5" step="0.1" value="0.7">
-          <span id="waveSpeed-value">0.7</span>
+          <div class="slider-row">
+            <input type="range" id="waveSpeed" min="0" max="5" step="0.1" value="0.7">
+            <span id="waveSpeed-value">0.7</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="waveAmplitude">Amplitude Sensitivity</label>
-          <input type="range" id="waveAmplitude" min="0" max="3" step="0.1" value="1.5">
-          <span id="waveAmplitude-value">1.5</span>
+          <div class="slider-row">
+            <input type="range" id="waveAmplitude" min="0" max="3" step="0.1" value="1.5">
+            <span id="waveAmplitude-value">1.5</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="brightness">Brightness Sensitivity</label>
-          <input type="range" id="brightness" min="0" max="5" step="0.1" value="2.4">
-          <span id="brightness-value">2.4</span>
+          <div class="slider-row">
+            <input type="range" id="brightness" min="0" max="5" step="0.1" value="2.4">
+            <span id="brightness-value">2.4</span>
+          </div>
         </div>
       </div>
     </section>
@@ -94,18 +108,24 @@
       <div class="param-group">
         <div class="param-control">
           <label for="hue">Hue</label>
-          <input type="range" id="hue" min="0" max="360" step="1" value="210">
-          <span id="hue-value">210</span>
+          <div class="slider-row">
+            <input type="range" id="hue" min="0" max="360" step="1" value="210">
+            <span id="hue-value">210</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="saturation">Saturation</label>
-          <input type="range" id="saturation" min="0" max="1" step="0.01" value="0.5">
-          <span id="saturation-value">0.5</span>
+          <div class="slider-row">
+            <input type="range" id="saturation" min="0" max="1" step="0.01" value="0.5">
+            <span id="saturation-value">0.5</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="contrast">Contrast</label>
-          <input type="range" id="contrast" min="0.5" max="2" step="0.05" value="1.0">
-          <span id="contrast-value">1.0</span>
+          <div class="slider-row">
+            <input type="range" id="contrast" min="0.5" max="2" step="0.05" value="1.0">
+            <span id="contrast-value">1.0</span>
+          </div>
         </div>
       </div>
     </section>
@@ -115,28 +135,38 @@
       <div class="param-group">
         <div class="param-control">
           <label for="threshold1">. (dot)</label>
-          <input type="range" id="threshold1" min="0" max="1" step="0.05" value="0.2">
-          <span id="threshold1-value">0.2</span>
+          <div class="slider-row">
+            <input type="range" id="threshold1" min="0" max="1" step="0.05" value="0.2">
+            <span id="threshold1-value">0.2</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="threshold2">- (dash)</label>
-          <input type="range" id="threshold2" min="0" max="1" step="0.05" value="0.4">
-          <span id="threshold2-value">0.4</span>
+          <div class="slider-row">
+            <input type="range" id="threshold2" min="0" max="1" step="0.05" value="0.4">
+            <span id="threshold2-value">0.4</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="threshold3">+ (plus)</label>
-          <input type="range" id="threshold3" min="0" max="1" step="0.05" value="0.6">
-          <span id="threshold3-value">0.6</span>
+          <div class="slider-row">
+            <input type="range" id="threshold3" min="0" max="1" step="0.05" value="0.6">
+            <span id="threshold3-value">0.6</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="threshold4">O (ring)</label>
-          <input type="range" id="threshold4" min="0" max="1" step="0.05" value="0.8">
-          <span id="threshold4-value">0.8</span>
+          <div class="slider-row">
+            <input type="range" id="threshold4" min="0" max="1" step="0.05" value="0.8">
+            <span id="threshold4-value">0.8</span>
+          </div>
         </div>
         <div class="param-control">
           <label for="threshold5">X (cross)</label>
-          <input type="range" id="threshold5" min="0" max="1" step="0.05" value="1.0">
-          <span id="threshold5-value">1.0</span>
+          <div class="slider-row">
+            <input type="range" id="threshold5" min="0" max="1" step="0.05" value="1.0">
+            <span id="threshold5-value">1.0</span>
+          </div>
         </div>
       </div>
     </section>

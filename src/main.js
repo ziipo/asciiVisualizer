@@ -115,6 +115,26 @@ document.addEventListener('visibilitychange', () => {
 });
 
 /**
+ * Collapse/expand control panel
+ */
+const collapseToggle = document.getElementById('collapse-toggle');
+const controlsContainer = document.getElementById('controls-container');
+
+if (collapseToggle && controlsContainer) {
+  collapseToggle.addEventListener('click', () => {
+    controlsContainer.classList.toggle('collapsed');
+    collapseToggle.classList.toggle('collapsed');
+
+    // Change button symbol
+    if (controlsContainer.classList.contains('collapsed')) {
+      collapseToggle.textContent = '+';
+    } else {
+      collapseToggle.textContent = '−';
+    }
+  });
+}
+
+/**
  * Keyboard shortcuts
  */
 document.addEventListener('keydown', (e) => {
@@ -129,6 +149,19 @@ document.addEventListener('keydown', (e) => {
   if (e.code === 'KeyF') {
     e.preventDefault();
     toggleFullscreen();
+  }
+
+  // C: toggle controls
+  if (e.code === 'KeyC') {
+    e.preventDefault();
+    controlsContainer.classList.toggle('collapsed');
+    collapseToggle.classList.toggle('collapsed');
+
+    if (controlsContainer.classList.contains('collapsed')) {
+      collapseToggle.textContent = '+';
+    } else {
+      collapseToggle.textContent = '−';
+    }
   }
 });
 
