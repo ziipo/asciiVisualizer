@@ -16,13 +16,13 @@ A WebGL-powered audio visualization that renders flowing ASCII cloud patterns dr
 
 ## Demo
 
-[Live Demo](https://kenburleson.github.io/asciiVisualizer) *(Update this with your actual GitHub Pages URL)*
+[Live Demo](https://ziipo.github.io/asciiVisualizer) *(Deploy to GitHub Pages to activate)*
 
 ## Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/kenburleson/asciiVisualizer.git
+git clone https://github.com/ziipo/asciiVisualizer.git
 cd asciiVisualizer
 
 # Install dependencies
