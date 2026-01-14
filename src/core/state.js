@@ -1,10 +1,10 @@
 // Global application state
 export const state = {
   // Audio sensitivity controls (user adjustable)
-  waveSpeed: 2.0,         // Multiplier for how much audio affects speed
-  waveAmplitude: 1.2,     // Multiplier for how much audio affects amplitude
-  brightness: 1.5,        // Multiplier for how much audio affects brightness
-  maxVolume: 1.0,         // Scale factor for normalizing volume (lower = louder sources treated as 100%)
+  waveSpeed: 0.7,         // Multiplier for how much audio affects speed
+  waveAmplitude: 1.5,     // Multiplier for how much audio affects amplitude
+  brightness: 2.4,        // Multiplier for how much audio affects brightness
+  maxVolume: 1.2,         // Scale factor for normalizing volume (lower = louder sources treated as 100%)
 
   // Computed audio values (calculated in render loop)
   computedWaveSpeed: 0,
@@ -17,14 +17,14 @@ export const state = {
   contrast: 1.0,
   hue: 210,
   saturation: 0.5,
-  vignette: 1.0,
-  vignetteIntensity: 0.5,
+  vignette: 0.5,
+  vignetteIntensity: 0.9,
   threshold1: 0.2,
   threshold2: 0.4,
   threshold3: 0.6,
   threshold4: 0.8,
   threshold5: 1.0,
-  seed: 42,
+  seed: Math.floor(Math.random() * 1000), // Randomized on page load
 
   // Audio state
   audioEnabled: false,
