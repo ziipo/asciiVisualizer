@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio-Reactive ASCII Clouds</title>
+  <script type="module" crossorigin src="/asciiVisualizer/assets/index-VmYNNlrM.js"></script>
+  <link rel="stylesheet" crossorigin href="/asciiVisualizer/assets/index-B6bUQcYM.css">
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <div class="controls-container">
+    <header>
+      <h1>Audio-Reactive ASCII Clouds</h1>
+      <p class="subtitle">WebGL visualization driven by sound</p>
+    </header>
+
+    <!-- Audio Controls -->
+    <section class="control-section">
+      <h2>Audio Source</h2>
+      <div class="audio-controls">
+        <div class="source-buttons">
+          <button id="mic-btn" class="btn source-btn">Microphone</button>
+          <button id="file-btn" class="btn source-btn">Audio File</button>
+          <button id="stop-audio-btn" class="btn" disabled>Stop</button>
+        </div>
+
+        <div class="file-upload" style="display: none;">
+          <input type="file" id="audio-file-input" accept="audio/*">
+          <div class="playback-controls">
+            <button id="play-pause-btn" class="btn" disabled>Play</button>
+            <span id="file-name" class="file-name"></span>
+          </div>
+        </div>
+
+        <div class="audio-feedback">
+          <div class="status-indicator">
+            <span id="audio-status">No Audio</span>
+          </div>
+          <div class="volume-meter">
+            <div class="volume-bar" id="volume-bar"></div>
+          </div>
+          <span id="volume-label" class="volume-label">Volume: 0%</span>
+        </div>
+
+        <div class="param-control" style="margin-top: 12px;">
+          <label for="maxVolume">Max Volume Scale</label>
+          <input type="range" id="maxVolume" min="0.2" max="3.0" step="0.1" value="1.0">
+          <span id="maxVolume-value">1.0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Parameters -->
+    <section class="control-section">
+      <h2>Noise Settings</h2>
+      <div class="param-group">
+        <div class="param-control">
+          <label for="cellSize">Cell Size</label>
+          <input type="range" id="cellSize" min="8" max="32" step="1" value="18">
+          <span id="cellSize-value">18</span>
+        </div>
+        <div class="param-control">
+          <label for="noiseIntensity">Noise Intensity</label>
+          <input type="range" id="noiseIntensity" min="0" max="0.5" step="0.01" value="0.125">
+          <span id="noiseIntensity-value">0.125</span>
+        </div>
+        <div class="param-control">
+          <label for="seed">Seed</label>
+          <input type="range" id="seed" min="0" max="999" step="1" value="42">
+          <span id="seed-value">42</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-section">
+      <h2>Audio Sensitivity</h2>
+      <div class="param-group">
+        <div class="param-control">
+          <label for="waveSpeed">Speed Sensitivity</label>
+          <input type="range" id="waveSpeed" min="0" max="5" step="0.1" value="2.0">
+          <span id="waveSpeed-value">2.0</span>
+        </div>
+        <div class="param-control">
+          <label for="waveAmplitude">Amplitude Sensitivity</label>
+          <input type="range" id="waveAmplitude" min="0" max="3" step="0.1" value="1.2">
+          <span id="waveAmplitude-value">1.2</span>
+        </div>
+        <div class="param-control">
+          <label for="brightness">Brightness Sensitivity</label>
+          <input type="range" id="brightness" min="0" max="5" step="0.1" value="1.5">
+          <span id="brightness-value">1.5</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-section">
+      <h2>Color</h2>
+      <div class="param-group">
+        <div class="param-control">
+          <label for="hue">Hue</label>
+          <input type="range" id="hue" min="0" max="360" step="1" value="210">
+          <span id="hue-value">210</span>
+        </div>
+        <div class="param-control">
+          <label for="saturation">Saturation</label>
+          <input type="range" id="saturation" min="0" max="1" step="0.01" value="0.5">
+          <span id="saturation-value">0.5</span>
+        </div>
+        <div class="param-control">
+          <label for="contrast">Contrast</label>
+          <input type="range" id="contrast" min="0.5" max="2" step="0.05" value="1.0">
+          <span id="contrast-value">1.0</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-section">
+      <h2>Vignette</h2>
+      <div class="param-group">
+        <div class="param-control">
+          <label for="vignette">Radius</label>
+          <input type="range" id="vignette" min="0.5" max="2" step="0.05" value="1.0">
+          <span id="vignette-value">1.0</span>
+        </div>
+        <div class="param-control">
+          <label for="vignetteIntensity">Intensity</label>
+          <input type="range" id="vignetteIntensity" min="0" max="1" step="0.05" value="0.5">
+          <span id="vignetteIntensity-value">0.5</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-section">
+      <h2>Glyph Thresholds</h2>
+      <div class="param-group">
+        <div class="param-control">
+          <label for="threshold1">. (dot)</label>
+          <input type="range" id="threshold1" min="0" max="1" step="0.05" value="0.2">
+          <span id="threshold1-value">0.2</span>
+        </div>
+        <div class="param-control">
+          <label for="threshold2">- (dash)</label>
+          <input type="range" id="threshold2" min="0" max="1" step="0.05" value="0.4">
+          <span id="threshold2-value">0.4</span>
+        </div>
+        <div class="param-control">
+          <label for="threshold3">+ (plus)</label>
+          <input type="range" id="threshold3" min="0" max="1" step="0.05" value="0.6">
+          <span id="threshold3-value">0.6</span>
+        </div>
+        <div class="param-control">
+          <label for="threshold4">O (ring)</label>
+          <input type="range" id="threshold4" min="0" max="1" step="0.05" value="0.8">
+          <span id="threshold4-value">0.8</span>
+        </div>
+        <div class="param-control">
+          <label for="threshold5">X (cross)</label>
+          <input type="range" id="threshold5" min="0" max="1" step="0.05" value="1.0">
+          <span id="threshold5-value">1.0</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>
