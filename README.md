@@ -68,6 +68,7 @@ The app will open at `http://localhost:3000`
 ### Keyboard Shortcuts
 - **Space**: Pause/Resume animation
 - **F**: Toggle fullscreen mode
+- **C**: Collapse/Expand control panel
 
 ## Technical Details
 
