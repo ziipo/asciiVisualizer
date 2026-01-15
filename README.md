@@ -38,6 +38,11 @@ The app will open at `http://localhost:3000`
 
 ### Audio Sources
 
+**Load Sample:**
+1. Click the "Load Sample" button to instantly load a demo audio file
+2. Features a 60-second clip of "Air Mail Special" by Benny Goodman (1941-1942, public domain)
+3. Perfect for testing the visualization without uploading your own files
+
 **Microphone:**
 1. Click the "Microphone" button
 2. Allow microphone permissions when prompted
