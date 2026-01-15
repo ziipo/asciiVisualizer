@@ -226,8 +226,13 @@ h2 {
 }
 
 .source-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
+}
+
+.source-buttons #stop-audio-btn {
+  grid-column: 1 / -1;
 }
 
 .btn {
