@@ -43,8 +43,9 @@ export function initAudioControls(audioManager, state, updateUI) {
   // Sample button - loads the demo audio file
   sampleBtn.addEventListener('click', async () => {
     try {
-      // Fetch the sample audio file
-      const response = await fetch('/demo-sample.mp3');
+      // Fetch the sample audio file (use import.meta.env.BASE_URL for correct path)
+      const samplePath = `${import.meta.env.BASE_URL}demo-sample.mp3`;
+      const response = await fetch(samplePath);
       if (!response.ok) throw new Error('Failed to load sample');
 
       const arrayBuffer = await response.arrayBuffer();
